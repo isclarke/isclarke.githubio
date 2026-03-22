@@ -1,111 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FANZ — Isaiah Clarke</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', sans-serif; background: #0f1115; color: #fff; } /* Dark theme for FANZ */
-
-  .page { max-width: 760px; margin: 0 auto; padding: 2rem; }
-
-  .back { display: inline-block; font-size: 0.85rem; color: #999; text-decoration: none; margin-bottom: 2rem; }
-  .back:hover { color: #fff; }
-
-  .project-header { margin-bottom: 2.5rem; }
-  .project-header h1 { font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
-  .project-header p { color: #ccc; font-size: 1rem; line-height: 1.6; max-width: 580px; }
-
-  .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
-  .tag { font-size: 0.75rem; padding: 0.2rem 0.65rem; border-radius: 999px; background: #222; color: #aaa; border: 1px solid #333; }
-
-  .divider { border: none; border-top: 1px solid #333; margin: 2rem 0; }
-
-  h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: #fff; }
-
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .feature { background: #1a1d23; border: 1px solid #333; border-radius: 12px; padding: 1.25rem; cursor: zoom-in; transition: transform 0.2s; }
-  .feature:hover { transform: translateY(-4px); border-color: #555; }
-
-  /* Automated Cropping Logic */
-  .img-container { width: 100%; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 6px; margin-bottom: 12px; background: #000; }
-  .img-container img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-
-  .feature h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; color: #eee; }
-  .feature p { font-size: 0.8rem; color: #999; line-height: 1.5; }
-
-  /* Modal */
-  .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
-  .modal-content { max-width: 90%; max-height: 85%; border-radius: 8px; border: 1px solid #444; }
-
-  footer { text-align: center; padding: 4rem 2rem; font-size: 0.8rem; color: #444; }
-</style>
-</head>
-<body>
-
-<div class="page">
-  <a class="back" href="index.html">← Back to Portfolio</a>
-
-  <div class="project-header">
-    <h1>FANZ</h1>
-    <p>A multi-sport community platform designed for real-time engagement, live scores, and deep-dive statistics across major leagues.</p>
-    <div class="tags">
-      <span class="tag">Web App</span>
-      <span class="tag">Real-Time Data</span>
-      <span class="tag">Dark Mode UI</span>
-    </div>
+<div class="features">
+  <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.06 PM.jpg')">
+    <img src="Screenshot 2026-03-22 at 1.38.06 PM.jpg" style="width:100%">
+    <h3>Live Games Feed</h3>
+    <p>Real-time updates for NBA and NFL matchups.</p>
   </div>
-
-  <hr class="divider">
-
-  <h2>Live Experience</h2>
-  <div class="features">
-    <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.06 PM.jpg')">
-      <div class="img-container">
-        <img src="Screenshot 2026-03-22 at 1.38.06 PM.jpg" alt="NBA Games Feed">
-      </div>
-      <h3>Live Games Feed</h3>
-      <p>Real-time updates for NBA and NFL matchups with active scoreboards.</p>
-    </div>
-
-    <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.10 PM.jpg')">
-      <div class="img-container">
-        <img src="Screenshot 2026-03-22 at 1.38.10 PM.jpg" alt="MLB Analytics">
-      </div>
-      <h3>MLB Statistics</h3>
-      <p>Detailed play-by-play summaries and historical team data visualization.</p>
-    </div>
-
-    <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.14 PM.jpg')">
-      <div class="img-container">
-        <img src="Screenshot 2026-03-22 at 1.38.14 PM.jpg" alt="User Profile">
-      </div>
-      <h3>Fan Profiles</h3>
-      <p>Customizable user settings with favorite team tracking and tier status.</p>
-    </div>
-
-    <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.16 PM.jpg')">
-      <div class="img-container">
-        <img src="Screenshot 2026-03-22 at 1.38.16 PM.jpg" alt="Community Explore">
-      </div>
-      <h3>Explore Hub</h3>
-      <p>Discover trending sports news and community discussions in a unified feed.</p>
-    </div>
+  <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.10 PM.jpg')">
+    <img src="Screenshot 2026-03-22 at 1.38.10 PM.jpg" style="width:100%">
+    <h3>MLB Statistics</h3>
+    <p>Detailed play-by-play summaries and team analytics.</p>
   </div>
-
-  <hr class="divider">
-
-  <h2>Design Philosophy</h2>
-  <p style="color: #999; font-size: 0.95rem; line-height: 1.6;">
-    FANZ utilizes a high-contrast dark theme to keep the focus on live data. By using modular cards and focused modals, we ensure fans can access complex player stats without losing their place in the live game feed.
-  </p>
 </div>
-
-<div id="imgModal" class="modal" onclick="this.style.display='none'">
-  <img class="modal-content" id="modalImg">
-</div>
-
-<script>
-  function

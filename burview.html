@@ -1,81 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bur-View — Isaiah Clarke</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #111; }
-  .page { max-width: 760px; margin: 0 auto; padding: 2rem; }
-  .back { display: inline-block; font-size: 0.85rem; color: #666; text-decoration: none; margin-bottom: 2rem; }
-  .project-header { margin-bottom: 2.5rem; }
-  .project-header h1 { font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
-  .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
-  .tag { font-size: 0.75rem; padding: 0.2rem 0.65rem; border-radius: 999px; background: #ebebeb; color: #444; }
-  .divider { border: none; border-top: 1px solid #e5e5e5; margin: 2rem 0; }
-  h2 { font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem; }
-  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
-  .gallery-item { background: white; border: 1px solid #e5e5e5; border-radius: 10px; padding: 1rem; cursor: zoom-in; }
-  .gallery-item img { width: 100%; border-radius: 6px; margin-bottom: 10px; }
-  .gallery-item h3 { font-size: 0.9rem; margin-bottom: 5px; }
-  .gallery-item p { font-size: 0.8rem; color: #666; line-height: 1.4; }
-  /* Modal */
-  .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
-  .modal-content { max-width: 90%; max-height: 85%; border-radius: 8px; }
-  footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: #aaa; }
-</style>
-</head>
-<body>
-<div class="page">
-  <a class="back" href="index.html">← Back to Portfolio</a>
-  <div class="project-header">
-    <h1>Bur-View</h1>
-    <p>A gamified community mobile app connecting Burlington residents with local environmental activities[cite: 160].</p>
-    <div class="tags">
-      <span class="tag">Mobile UX/UI</span><span class="tag">Gamification</span><span class="tag">Geo-Location</span>
-    </div>
+<h2>Interface Details</h2>
+<div class="gallery">
+  <div class="gallery-item" onclick="openModal('Main Page #2 Detail.jpg')">
+    <img src="Main Page #2 Detail.jpg" alt="Main Dashboard">
+    <h3>Main Dashboard</h3>
+    <p>Clean interface for viewing points and entering the app.</p>
   </div>
-
-  <hr class="divider">
-
-  <h2>Interface Details</h2>
-  <div class="gallery">
-    <div class="gallery-item" onclick="openModal('Main Page #2 Detail.jpg')">
-      <img src="Main Page #2 Detail.jpg" alt="Main Dashboard">
-      <h3>Main Dashboard</h3>
-      <p>Clean, welcoming interface for viewing points and entering the app[cite: 171, 172].</p>
-    </div>
-    <div class="gallery-item" onclick="openModal('Reservation Screen Detail.jpg')">
-      <img src="Reservation Screen Detail.jpg" alt="Activity Details">
-      <h3>Activity Details</h3>
-      <p>Interactive map showing nearby activities and business details[cite: 166, 183].</p>
-    </div>
-    <div class="gallery-item" onclick="openModal('Cycle Screen Deatil.jpg')">
-      <img src="Cycle Screen Deatil.jpg" alt="Watch View">
-      <h3>Watch Companion</h3>
-      <p>Compact wearable view optimized for quick activity tracking[cite: 185, 186].</p>
-    </div>
+  <div class="gallery-item" onclick="openModal('Reservation Screen Detail.jpg')">
+    <img src="Reservation Screen Detail.jpg" alt="Activity Details">
+    <h3>Activity Details</h3>
+    <p>Interactive map showing nearby activities and business details.</p>
   </div>
-
-  <hr class="divider">
-  <h2>Technical Highlights</h2>
-  <ul style="font-size: 0.9rem; line-height: 2; color: #444; list-style-type: '→ '; padding-left: 1rem;">
-    <li>Real-time location tracking and mapping integration [cite: 198]</li>
-    <li>Point-based gamification system to drive user engagement [cite: 199]</li>
-    <li>Scalable architecture supporting multiple cities [cite: 201]</li>
-  </ul>
+  <div class="gallery-item" onclick="openModal('Cycle Screen Deatil.jpg')">
+    <img src="Cycle Screen Deatil.jpg" alt="Watch View">
+    <h3>Watch Companion</h3>
+    <p>Compact wearable view for quick activity tracking.</p>
+  </div>
 </div>
-
-<div id="imgModal" class="modal" onclick="this.style.display='none'"><img class="modal-content" id="modalImg"></div>
-
-<script>
-  function openModal(src) {
-    document.getElementById('imgModal').style.display='flex';
-    document.getElementById('modalImg').src=src;
-  }
-</script>
-<footer>Isaiah Clarke · 2026</footer>
-</body>
-</html>
