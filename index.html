@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isaiah Clarke — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F3EE;
+    --surface: #EDEAE2;
+    --dark: #1A1916;
+    --mid: #6B6860;
+    --accent: #2563EB;
+    --accent2: #EF4444;
+    --accent3: #16A34A;
+    --border: #D9D5CB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(245,243,238,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(100px, 18vw, 260px);
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+    animation: fadeUp 1.2s ease both;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 8vw, 100px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--mid); }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--mid);
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  .hero-ctas {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.65s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--dark);
+    color: var(--bg);
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--dark);
+    color: var(--dark);
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: var(--dark); color: var(--bg); }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute; bottom: 32px; right: 48px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; color: var(--mid);
+    writing-mode: vertical-rl;
+    animation: fadeUp 1s 1s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(var(--mid), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 120px 48px; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--mid);
+    margin-bottom: 64px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ABOUT */
+  #about { background: var(--dark); color: var(--bg); }
+  #about .section-label { color: rgba(255,255,255,0.4); }
+  #about .section-label::after { background: rgba(255,255,255,0.1); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .about-headline em { font-style: italic; opacity: 0.5; }
+  .about-body { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.65); }
+  .about-body p + p { margin-top: 20px; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 48px; }
+  .skill-item {
+    background: rgba(255,255,255,0.05);
+    padding: 20px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+  .skill-item:hover { background: rgba(255,255,255,0.1); }
+
+  /* WORK */
+  #work { background: var(--bg); }
+  .projects-list { display: flex; flex-direction: column; gap: 2px; }
+  .project-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    gap: 40px;
+    padding: 36px 0;
+    border-top: 1px solid var(--border);
+    cursor: pointer;
+    transition: padding-left 0.3s;
+    position: relative;
+  }
+  .project-item:hover { padding-left: 16px; }
+  .project-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--mid);
+    letter-spacing: 0.06em;
+  }
+  .project-info { }
+  .project-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 3.5vw, 48px);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    transition: color 0.2s;
+  }
+  .project-item:hover .project-name { color: var(--accent); }
+  .project-tags { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    background: var(--surface);
+    color: var(--mid);
+    border: 1px solid var(--border);
+  }
+  .project-arrow {
+    font-size: 24px;
+    color: var(--border);
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+  .project-item:hover .project-arrow { color: var(--accent); transform: translate(4px, -4px); }
+
+  /* PROJECT DETAIL */
+  .project-detail {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.4,0,0.2,1);
+    border-top: none;
+  }
+  .project-detail.open { max-height: 1200px; }
+  .project-detail-inner {
+    padding: 48px 0 64px 120px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .project-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--mid);
+  }
+  .project-desc p + p { margin-top: 16px; }
+  .project-highlights h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    margin-bottom: 20px;
+  }
+  .highlight-list { list-style: none; }
+  .highlight-list li {
+    font-size: 14px;
+    color: var(--dark);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .highlight-list li::before {
+    content: '→';
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* SCREENSHOTS GALLERY */
+  .screenshots-section {
+    padding: 0 48px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .screenshot-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    position: relative;
+  }
+  .screenshot-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--border) 100%);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--mid);
+  }
+
+  /* CONTACT */
+  #contact { background: var(--surface); border-top: 1px solid var(--border); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .contact-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .contact-headline em { font-style: italic; color: var(--mid); }
+  .contact-sub { font-size: 15px; color: var(--mid); max-width: 400px; line-height: 1.7; margin-bottom: 40px; }
+  .contact-links { display: flex; flex-direction: column; gap: 2px; }
+  .contact-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 14px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover { background: var(--dark); color: var(--bg); border-color: var(--dark); }
+  .contact-link span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--mid); }
+  .contact-link:hover span { color: rgba(255,255,255,0.5); }
+  .contact-link .link-arrow { transition: transform 0.2s; }
+  .contact-link:hover .link-arrow { transform: translate(4px, -4px); }
+  .contact-info { }
+  .info-row {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-row:first-child { border-top: 1px solid var(--border); }
+  .info-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    width: 100px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .info-value { font-size: 14px; line-height: 1.6; }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--bg);
+  }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); letter-spacing: 0.06em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 20px; }
+    section { padding: 80px 24px; }
+    .hero { padding: 0 24px 64px; }
+    .about-grid, .contact-grid, .project-detail-inner { grid-template-columns: 1fr; gap: 40px; }
+    .project-item { grid-template-columns: 40px 1fr auto; gap: 20px; }
+    .project-detail-inner { padding: 32px 0 48px 60px; }
+    .screenshots-section { padding: 0 24px 64px; grid-template-columns: 1fr 1fr; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .screenshots-section { grid-template-columns: 1fr; }
+    .hero-ctas { flex-direction: column; }
+    .btn-primary, .btn-outline { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">IC / 2026</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-text">ISAIAH</div>
+  <div class="hero-content">
+    <p class="hero-tag">SOFTWARE ENGINEER & DESIGNER</p>
+    <h1 class="hero-title">Isaiah<br><em>Clarke.</em></h1>
+    <p class="hero-sub">Building intuitive systems at the intersection of hardware, software, and human experience. Based in Hartford, CT.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">View Work →</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">01 — ABOUT</p>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-headline">Building things<br>that <em>actually</em><br>get used.</h2>
+    </div>
+    <div>
+      <div class="about-body">
+        <p>I'm a Computer Science student at the University of Hartford with a passion for full-stack development and IoT systems. I build applications that solve real problems — from smart laundry monitoring to community sports platforms.</p>
+        <p>My work spans mobile apps, web platforms, hardware integration, and data pipelines. I care deeply about user experience and making complex systems feel simple.</p>
+        <p>Currently seeking opportunities in software engineering where I can contribute across the full stack.</p>
+      </div>
+      <div class="skills-grid" style="margin-top:40px">
+        <div class="skill-item">Python / Flask</div>
+        <div class="skill-item">React / JavaScript</div>
+        <div class="skill-item">IoT / Raspberry Pi</div>
+        <div class="skill-item">REST APIs</div>
+        <div class="skill-item">SQL / Databases</div>
+        <div class="skill-item">UI/UX Design</div>
+        <div class="skill-item">Figma</div>
+        <div class="skill-item">Git / GitHub</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <p class="section-label">02 — SELECTED WORK</p>
+  <div class="projects-list">
+
+    <!-- Project 1 -->
+    <div class="project-item reveal" onclick="toggleProject(this)">
+      <span class="project-num">001</span>
+      <div class="project-info">
+        <h3 class="project-name">Unit Hub</h3>
+        <div class="project-tags">
+          <span class="tag">IoT</span>
+          <span class="tag">RASPBERRY PI</span>
+          <span class="tag">FLASK</span>
+          <span class="tag">REAL-TIME</span>
+          <span class="tag">SENIOR CAPSTONE</span>
+        </div>
+      </div>
+      <span class="project-arrow">↗</span>
+    </div>
+    <div class="project-detail">
+      <div class="project-detail-inner">
+        <div class="project-desc">
+          <p>A full IoT laundry monitoring and reservation system for college dorms and apartments. Non-invasive current sensors attached to a Raspberry Pi detect washer/dryer states in real time — no appliance modifications required.</p>
+          <p>Users see live countdowns, reserve machines via a queue system, and receive SMS/email/in-app alerts. Admins get a management portal with cycle analytics and maintenance alerts. Built entirely from scratch as a senior design capstone.</p>
+        </div>
+        <div class="project-highlights">
+          <h4>KEY FEATURES</h4>
+          <ul class="highlight-list">
+            <li>Real-time machine status with color-coded availability</li>
+            <li>Smart reservation queue with auto-cancellation</li>
+            <li>Multi-sensor fusion: temperature, humidity, vibration</li>
+            <li>Customizable notifications (SMS, email, in-app)</li>
+            <li>Admin portal for maintenance and analytics</li>
+            <li>Offline-capable local-first architecture</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-item reveal" onclick="toggleProject(this)" style="transition-delay:0.1s">
+      <span class="project-num">002</span>
+      <div class="project-info">
+        <h3 class="project-name">FANZ</h3>
+        <div class="project-tags">
+          <span class="tag">SPORTS PLATFORM</span>
+          <span class="tag">REST API</span>
+          <span class="tag">REACT</span>
+          <span class="tag">REAL-TIME DATA</span>
+        </div>
+      </div>
+      <span class="project-arrow">↗</span>
+    </div>
+    <div class="project-detail">
+      <div class="project-detail-inner">
+        <div class="project-desc">
+          <p>A multi-sport community platform delivering live scores, play-by-play stats, and event schedules across NFL, NBA, MLB, NHL, and soccer leagues. Built with a Flask backend consuming third-party sports APIs and a React frontend.</p>
+          <p>Features user profiles, favorite teams, membership tiers, direct messaging, and a community feed — all in a dark, information-dense interface optimized for extended browsing.</p>
+        </div>
+        <div class="project-highlights">
+          <h4>KEY FEATURES</h4>
+          <ul class="highlight-list">
+            <li>Live scores & play-by-play for 5+ leagues</li>
+            <li>Inning-by-inning MLB game breakdowns</li>
+            <li>Personalized user profiles & favorite teams</li>
+            <li>Social feed, explore, and direct messaging</li>
+            <li>Upcoming events calendar across all leagues</li>
+            <li>RESTful API integration with sports data providers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-item reveal" onclick="toggleProject(this)" style="transition-delay:0.2s">
+      <span class="project-num">003</span>
+      <div class="project-info">
+        <h3 class="project-name">Bur-View</h3>
+        <div class="project-tags">
+          <span class="tag">MOBILE APP</span>
+          <span class="tag">COMMUNITY</span>
+          <span class="tag">MAPS</span>
+          <span class="tag">GAMIFICATION</span>
+        </div>
+      </div>
+      <span class="project-arrow">↗</span>
+    </div>
+    <div class="project-detail">
+      <div class="project-detail-inner">
+        <div class="project-desc">
+          <p>A community engagement mobile app connecting Burlington residents with environmental activities — tree planting, cleanups, recycling — through gamified point systems and social features.</p>
+          <p>Users earn points redeemable at local partner businesses, join or create teams, and discover activities on an interactive real-time map. Designed with a warm earthy palette to reflect the environmental mission.</p>
+        </div>
+        <div class="project-highlights">
+          <h4>KEY FEATURES</h4>
+          <ul class="highlight-list">
+            <li>Interactive real-time map of nearby activities</li>
+            <li>Solo & group activity modes with leaderboards</li>
+            <li>Points system redeemable at local businesses</li>
+            <li>Team management and group competition</li>
+            <li>Wearable device companion view</li>
+            <li>Scalable multi-city architecture</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">03 — CONTACT</p>
+  <div class="contact-grid">
+    <div>
+      <h2 class="contact-headline">Let's build<br><em>something.</em></h2>
+      <p class="contact-sub">Open to full-time software engineering roles, internships, and interesting collaborations. Reach out — I reply quickly.</p>
+      <div class="contact-links">
+        <a href="mailto:isclarke@hartford.edu" class="contact-link">
+          <div>
+            <span>EMAIL</span>
+            <div style="margin-top:4px; font-size:14px;">isclarke@hartford.edu</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://linkedin.com/in/isaiah-clarke" target="_blank" class="contact-link">
+          <div>
+            <span>LINKEDIN</span>
+            <div style="margin-top:4px; font-size:14px;">linkedin.com/in/isaiah-clarke</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://github.com/isaiahclarke" target="_blank" class="contact-link">
+          <div>
+            <span>GITHUB</span>
+            <div style="margin-top:4px; font-size:14px;">github.com/isaiahclarke</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-info reveal">
+      <div class="info-row">
+        <span class="info-label">BASED IN</span>
+        <span class="info-value">Hartford, Connecticut</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">EDUCATION</span>
+        <span class="info-value">B.S. Computer Science<br>University of Hartford, 2026</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">FOCUS</span>
+        <span class="info-value">Full-Stack Development<br>IoT Systems · UI/UX</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">AVAILABILITY</span>
+        <span class="info-value" style="color: #16A34A; font-weight:500;">Open to opportunities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 ISAIAH CLARKE — ALL RIGHTS RESERVED</span>
+  <span class="footer-copy">HARTFORD, CT</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+
+  // Project accordion
+  function toggleProject(item) {
+    const detail = item.nextElementSibling;
+    const allDetails = document.querySelectorAll('.project-detail');
+    const allItems = document.querySelectorAll('.project-item');
+    const isOpen = detail.classList.contains('open');
+
+    allDetails.forEach(d => d.classList.remove('open'));
+    allItems.forEach(i => i.style.paddingLeft = '');
+
+    if (!isOpen) {
+      detail.classList.add('open');
+    }
+  }
+
+  // Smooth nav hide on scroll
+  let lastY = 0;
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > lastY && y > 80) nav.style.transform = 'translateY(-100%)';
+    else nav.style.transform = '';
+    nav.style.transition = 'transform 0.3s ease';
+    lastY = y;
+  });
+</script>
+</body>
+</html>
