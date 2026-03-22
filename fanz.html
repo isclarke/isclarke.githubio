@@ -7,130 +7,105 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #111; }
+  body { font-family: 'Inter', sans-serif; background: #0f1115; color: #fff; } /* Dark theme for FANZ */
 
   .page { max-width: 760px; margin: 0 auto; padding: 2rem; }
 
-  .back { display: inline-block; font-size: 0.85rem; color: #666; text-decoration: none; margin-bottom: 2rem; }
-  .back:hover { color: #111; }
+  .back { display: inline-block; font-size: 0.85rem; color: #999; text-decoration: none; margin-bottom: 2rem; }
+  .back:hover { color: #fff; }
 
   .project-header { margin-bottom: 2.5rem; }
   .project-header h1 { font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
-  .project-header p { color: #555; font-size: 1rem; line-height: 1.6; max-width: 580px; }
+  .project-header p { color: #ccc; font-size: 1rem; line-height: 1.6; max-width: 580px; }
 
   .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
-  .tag { font-size: 0.75rem; padding: 0.2rem 0.65rem; border-radius: 999px; background: #ebebeb; color: #444; }
+  .tag { font-size: 0.75rem; padding: 0.2rem 0.65rem; border-radius: 999px; background: #222; color: #aaa; border: 1px solid #333; }
 
-  .divider { border: none; border-top: 1px solid #e5e5e5; margin: 2rem 0; }
+  .divider { border: none; border-top: 1px solid #333; margin: 2rem 0; }
 
-  h2 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: #fff; }
 
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .feature {
-    background: white;
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    padding: 1.25rem;
-  }
-  .feature h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; }
-  .feature p { font-size: 0.82rem; color: #666; line-height: 1.5; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .feature { background: #1a1d23; border: 1px solid #333; border-radius: 12px; padding: 1.25rem; cursor: zoom-in; transition: transform 0.2s; }
+  .feature:hover { transform: translateY(-4px); border-color: #555; }
 
-  .overview-block {
-    background: white;
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .overview-block p { font-size: 0.9rem; color: #444; line-height: 1.7; }
+  /* Automated Cropping Logic */
+  .img-container { width: 100%; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 6px; margin-bottom: 12px; background: #000; }
+  .img-container img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-  .list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .list li {
-    font-size: 0.875rem;
-    color: #444;
-    padding: 0.6rem 1rem;
-    background: white;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-  }
-  .list li::before { content: '→ '; color: #aaa; }
+  .feature h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; color: #eee; }
+  .feature p { font-size: 0.8rem; color: #999; line-height: 1.5; }
 
-  footer { text-align: center; padding: 3rem 2rem 2rem; font-size: 0.8rem; color: #aaa; }
+  /* Modal */
+  .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+  .modal-content { max-width: 90%; max-height: 85%; border-radius: 8px; border: 1px solid #444; }
+
+  footer { text-align: center; padding: 4rem 2rem; font-size: 0.8rem; color: #444; }
 </style>
 </head>
 <body>
-<div class="page">
 
+<div class="page">
   <a class="back" href="index.html">← Back to Portfolio</a>
 
   <div class="project-header">
-    <h1> FANZ</h1>
-    <p>A comprehensive multi-sport community platform delivering live scores, detailed game statistics, and upcoming event schedules across NFL, NBA, MLB, NHL, and Soccer leagues.</p>
+    <h1>FANZ</h1>
+    <p>A multi-sport community platform designed for real-time engagement, live scores, and deep-dive statistics across major leagues.</p>
     <div class="tags">
       <span class="tag">Web App</span>
       <span class="tag">Real-Time Data</span>
-      <span class="tag">Sports</span>
-      <span class="tag">API Integration</span>
+      <span class="tag">Dark Mode UI</span>
     </div>
   </div>
 
   <hr class="divider">
 
-  <h2>Overview</h2>
-  <div class="overview-block">
-    <p>FANZ is built for fans who follow multiple sports and want a single place for schedules, scores, and in-depth statistics. The dark-themed interface is designed for comfortable viewing during live games, with modal windows giving quick access to detailed stats without leaving the main feed.</p>
-  </div>
-
-  <hr class="divider">
-
-  <h2>Key Features</h2>
+  <h2>Live Experience</h2>
   <div class="features">
-    <div class="feature">
-      <h3>Multi-Sport Coverage</h3>
-      <p>NFL, NBA, MLB, NHL, and Soccer — all in one place with consistent game tracking.</p>
+    <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.06 PM.jpg')">
+      <div class="img-container">
+        <img src="Screenshot 2026-03-22 at 1.38.06 PM.jpg" alt="NBA Games Feed">
+      </div>
+      <h3>Live Games Feed</h3>
+      <p>Real-time updates for NBA and NFL matchups with active scoreboards.</p>
     </div>
-    <div class="feature">
-      <h3>Real-Time Game Details</h3>
-      <p>Live scores, play-by-play updates, and inning/quarter breakdowns.</p>
+
+    <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.10 PM.jpg')">
+      <div class="img-container">
+        <img src="Screenshot 2026-03-22 at 1.38.10 PM.jpg" alt="MLB Analytics">
+      </div>
+      <h3>MLB Statistics</h3>
+      <p>Detailed play-by-play summaries and historical team data visualization.</p>
     </div>
-    <div class="feature">
-      <h3>User Profiles</h3>
-      <p>Personalized profiles with favorite team preferences and membership tiers.</p>
+
+    <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.14 PM.jpg')">
+      <div class="img-container">
+        <img src="Screenshot 2026-03-22 at 1.38.14 PM.jpg" alt="User Profile">
+      </div>
+      <h3>Fan Profiles</h3>
+      <p>Customizable user settings with favorite team tracking and tier status.</p>
     </div>
-    <div class="feature">
-      <h3>Upcoming Events</h3>
-      <p>Full schedule view across all leagues so fans never miss a game.</p>
-    </div>
-    <div class="feature">
-      <h3>Statistics Dashboard</h3>
-      <p>Detailed analytics with scoring summaries and play-by-play descriptions.</p>
-    </div>
-    <div class="feature">
-      <h3>Social Features</h3>
-      <p>Community feed, explore tab, and direct messaging for sports fans.</p>
+
+    <div class="feature" onclick="openModal('Screenshot 2026-03-22 at 1.38.16 PM.jpg')">
+      <div class="img-container">
+        <img src="Screenshot 2026-03-22 at 1.38.16 PM.jpg" alt="Community Explore">
+      </div>
+      <h3>Explore Hub</h3>
+      <p>Discover trending sports news and community discussions in a unified feed.</p>
     </div>
   </div>
-
-  <hr class="divider">
-
-  <h2>Technical Highlights</h2>
-  <ul class="list">
-    <li>RESTful API integration with multiple sports data providers</li>
-    <li>Real-time data synchronization for live game updates</li>
-    <li>Responsive interface optimized for desktop and mobile</li>
-    <li>Dark theme UI designed for extended, comfortable viewing</li>
-    <li>Scalable backend architecture supporting concurrent users</li>
-    <li>Comprehensive league coverage: NFL, NBA, MLB, NHL, MLS</li>
-  </ul>
 
   <hr class="divider">
 
   <h2>Design Philosophy</h2>
-  <div class="overview-block">
-    <p>FANZ uses a dark, modern interface to reduce eye strain during live game viewing. Navigation is organized by sport type, and modals give rapid access to detailed stats without breaking the browsing flow. The design prioritizes information density while keeping everything readable.</p>
-  </div>
-
+  <p style="color: #999; font-size: 0.95rem; line-height: 1.6;">
+    FANZ utilizes a high-contrast dark theme to keep the focus on live data. By using modular cards and focused modals, we ensure fans can access complex player stats without losing their place in the live game feed.
+  </p>
 </div>
-<footer>Isaiah Clarke · 2026</footer>
-</body>
-</html>
+
+<div id="imgModal" class="modal" onclick="this.style.display='none'">
+  <img class="modal-content" id="modalImg">
+</div>
+
+<script>
+  function
