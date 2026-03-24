@@ -350,45 +350,82 @@
       </div>
     </div>
 
-    <!-- PROJECT 3: DELICATE FIT -->
-    <div class="project-row reveal" style="transition-delay:0.16s">
-      <div class="project-header" onclick="toggleProject(this)">
-        <span class="project-num">003</span>
-        <div>
-          <h3 class="project-name">Delicate Fit</h3>
-          <div class="project-tags">
-            <span class="tag">REACT</span><span class="tag">SQL</span>
-            <span class="tag">JAVASCRIPT</span><span class="tag">AI / ML</span>
-            <span class="tag">FIGMA</span>
-          </div>
-        </div>
-        <span class="project-arrow">↗</span>
-      </div>
-      <div class="project-detail">
-        <div class="detail-inner">
-          <div class="detail-top">
-            <div class="project-desc">
-              <p>A scalable full-stack AI fashion platform enabling real-time virtual clothing visualization on user-uploaded images. Users can digitally try on outfits before purchasing, powered by an AI try-on engine embedded in a modern storefront experience.</p>
-              <p>Architected with a secure authentication and role-based access system using JWT, bcrypt, and Express middleware, and a normalized relational database schema supporting complex relationships across the entire platform.</p>
-            </div>
-            <div class="project-highlights">
-              <h4>KEY FEATURES</h4>
-              <ul class="highlight-list">
-                <li>Real-time AI virtual try-on on user images</li>
-                <li>JWT + bcrypt authentication with role-based access</li>
-                <li>Express middleware for protected API routes</li>
-                <li>3NF normalized schema: users, outfits, orders, AI results</li>
-                <li>Scalable full-stack React + Node architecture</li>
-                <li>Figma-designed UI system</li>
-              </ul>
-            </div>
-          </div>
-          <div class="coming-soon">
-            <p>SCREENSHOTS COMING SOON</p>
-          </div>
-        </div>
+<!-- PROJECT 3: DELICATE FIT -->
+<div class="project-row reveal" style="transition-delay:0.16s">
+  <div class="project-header" onclick="toggleProject(this)">
+    <span class="project-num">003</span>
+    <div>
+      <h3 class="project-name">Delicate Fit</h3>
+      <div class="project-tags">
+        <span class="tag">REACT</span><span class="tag">NODE</span>
+        <span class="tag">SQL</span><span class="tag">AI / ML</span>
+        <span class="tag">FIGMA</span>
       </div>
     </div>
+    <span class="project-arrow">↗</span>
+  </div>
+
+  <div class="project-detail">
+    <div class="detail-inner">
+
+      <div class="detail-top">
+        <div class="project-desc">
+          <p>
+            A full-stack AI-powered fashion platform that enables users to virtually try on clothing using their own photos before purchasing. Built with a modern React frontend and Node/Express backend, the platform blends e-commerce with real-time AI visualization.
+          </p>
+          <p>
+            Designed with scalability and security in mind, the system implements JWT authentication, role-based admin controls, and a normalized SQL database handling products, users, orders, and AI-generated assets.
+          </p>
+        </div>
+
+        <div class="project-highlights">
+          <h4>KEY FEATURES</h4>
+          <ul class="highlight-list">
+            <li>AI-powered virtual try-on with user image upload</li>
+            <li>Full e-commerce flow: browse, filter, cart, checkout</li>
+            <li>Admin dashboard for product & inventory management</li>
+            <li>JWT + bcrypt authentication with role-based access</li>
+            <li>REST API with protected Express middleware</li>
+            <li>Normalized SQL schema (users, products, orders, AI results)</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="screens-label">APPLICATION SCREENS</p>
+
+      <div class="screens-grid cols2">
+
+        <!-- PRODUCT BROWSING -->
+        <div class="screen-card wide" onclick="openLB(this)">
+          <img src="images/product.jpg" alt="Product Browsing UI" loading="lazy">
+          <div class="screen-caption">
+            <div class="screen-title">Product Browsing & Filtering</div>
+            Clean storefront UI with category filters, search, and dynamic product cards allowing users to quickly explore and select items.
+          </div>
+        </div>
+
+        <!-- ADMIN DASHBOARD -->
+        <div class="screen-card wide" onclick="openLB(this)">
+          <img src="images/productmanager.jpg" alt="Admin Product Manager" loading="lazy">
+          <div class="screen-caption">
+            <div class="screen-title">Admin Product Management</div>
+            Role-based dashboard for editing products, managing inventory by size, and maintaining structured catalog data.
+          </div>
+        </div>
+
+        <!-- VIRTUAL TRY-ON -->
+        <div class="screen-card wide" onclick="openLB(this)">
+          <img src="images/virtualtryon.jpg" alt="Virtual Try-On Interface" loading="lazy">
+          <div class="screen-caption">
+            <div class="screen-title">AI Virtual Try-On Interface</div>
+            Users upload photos and select garments to generate AI-powered try-on previews within an intuitive step-by-step workflow.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- PROJECT 4: BUR-VIEW -->
     <div class="project-row reveal" style="transition-delay:0.24s">
